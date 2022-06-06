@@ -22,6 +22,7 @@ import {
 } from '@dagster-io/ui';
 import * as React from 'react';
 import {BrowserRouter} from 'react-router-dom';
+import {CompatRouter} from 'react-router-dom-v5-compat';
 import {createGlobalStyle} from 'styled-components/macro';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
 
@@ -174,17 +175,19 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
         <ApolloProvider client={apolloClient}>
           <PermissionsProvider>
             <BrowserRouter basename={basePath || ''}>
-              <TimezoneProvider>
-                <WorkspaceProvider>
-                  <CustomConfirmationProvider>
-                    <AnalyticsContext.Provider value={analytics}>
-                      <LayoutProvider>{props.children}</LayoutProvider>
-                    </AnalyticsContext.Provider>
-                  </CustomConfirmationProvider>
-                  <CustomTooltipProvider />
-                  <CustomAlertProvider />
-                </WorkspaceProvider>
-              </TimezoneProvider>
+              <CompatRouter>
+                <TimezoneProvider>
+                  <WorkspaceProvider>
+                    <CustomConfirmationProvider>
+                      <AnalyticsContext.Provider value={analytics}>
+                        <LayoutProvider>{props.children}</LayoutProvider>
+                      </AnalyticsContext.Provider>
+                    </CustomConfirmationProvider>
+                    <CustomTooltipProvider />
+                    <CustomAlertProvider />
+                  </WorkspaceProvider>
+                </TimezoneProvider>
+              </CompatRouter>
             </BrowserRouter>
           </PermissionsProvider>
         </ApolloProvider>
