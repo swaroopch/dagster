@@ -3,6 +3,12 @@
 This is an example of how to use the Software-Defined Asset APIs alongside Modern Data Stack tools
 (specifically, Airbyte and dbt).
 
+# Deploy
+
+Deploy the example using [Dagster Cloud](https://dagster.io/cloud):
+
+[🚀](#link-to-dagster-cloud)
+
 # Setup
 
 ## Python
