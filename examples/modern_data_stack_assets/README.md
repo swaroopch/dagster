@@ -7,7 +7,7 @@ This is an example of how to use the Software-Defined Asset APIs alongside Moder
 
 Deploy the example using [Dagster Cloud](https://dagster.io/cloud):
 
-[🚀](#link-to-dagster-cloud)
+[🚀 imagine a cool icon](#link-to-dagster-cloud)
 
 # Setup
 
