@@ -16,9 +16,9 @@ from typing import (
 from typing_extensions import TypeAlias
 
 import dagster._check as check
-from dagster.builtins import Int
 from dagster._config import Field, Selector
 from dagster._config.config_schema import UserConfigSchema
+from dagster.builtins import Int
 from dagster.core.definitions.configurable import (
     ConfiguredDefinitionConfigSchema,
     NamedConfigurableDefinition,

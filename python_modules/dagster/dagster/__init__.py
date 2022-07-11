@@ -11,14 +11,17 @@ sys.meta_path.insert(
     _module_alias_map.get_meta_path_insertion_index(),
     _module_alias_map.AliasedModuleFinder(
         {
+            "dagster.api": "dagster._api",
             "dagster.check": "dagster._check",
+            "dagster.cli": "dagster._cli",
+            "dagster.config": "dagster._config",
         }
     ),
 )
-from dagster.builtins import Any, Bool, Float, Int, Nothing, String
 from dagster._config import Enum, EnumValue, Field, Map, Permissive, Selector, Shape
 from dagster._config.config_schema import ConfigSchema
 from dagster._config.config_type import Array, Noneable, ScalarUnion
+from dagster.builtins import Any, Bool, Float, Int, Nothing, String
 from dagster.core.definitions import (
     AssetIn,
     AssetKey,
