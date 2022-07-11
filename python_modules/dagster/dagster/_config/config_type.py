@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, cast
 
 import dagster._check as check
 from dagster.builtins import BuiltinEnum
-from dagster.config.config_schema import UserConfigSchema
+from dagster._config.config_schema import UserConfigSchema
 from dagster.serdes import whitelist_for_serdes
 
 
