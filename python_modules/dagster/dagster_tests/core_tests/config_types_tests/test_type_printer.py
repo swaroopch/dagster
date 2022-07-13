@@ -1,8 +1,11 @@
 from dagster import Field, Int, Map, Noneable, PipelineDefinition, ScalarUnion, String, solid
-from dagster._config.field import resolve_to_config_type
-from dagster._config.iterate_types import config_schema_snapshot_from_config_type
-from dagster._config.snap import get_recursive_type_keys, snap_from_config_type
-from dagster._config.type_printer import print_config_type_to_string
+from dagster._config import (
+    config_schema_snapshot_from_config_type,
+    get_recursive_type_keys,
+    print_config_type_to_string,
+    resolve_to_config_type,
+    snap_from_config_type,
+)
 
 
 def assert_inner_types(parent_type, *dagster_types):

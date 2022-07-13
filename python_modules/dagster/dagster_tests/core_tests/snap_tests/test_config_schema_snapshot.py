@@ -12,9 +12,7 @@ from dagster import (
     resource,
     solid,
 )
-from dagster._config.config_type import ConfigTypeKind
-from dagster._config.field import resolve_to_config_type
-from dagster._config.field_utils import Map
+from dagster._config import ConfigTypeKind, Map, resolve_to_config_type
 from dagster.core.snap import (
     ConfigEnumValueSnap,
     build_config_schema_snapshot,
