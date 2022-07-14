@@ -4,6 +4,10 @@ from .config_type import (
     Array,
     Bool,
     ConfigAnyInstance,
+    ConfigBoolInstance,
+    ConfigFloatInstance,
+    ConfigIntInstance,
+    ConfigStringInstance,
     ConfigScalar,
     ConfigScalarKind,
     ConfigType,
@@ -17,6 +21,37 @@ from .config_type import (
     String,
     get_builtin_scalar_by_name,
 )
+from .field import Field, resolve_to_config_type
+from .field_utils import (
+    FIELD_NO_DEFAULT_PROVIDED,
+    Map,
+    Permissive,
+    Selector,
+    Shape,
+    compute_fields_hash,
+    convert_potential_field,
+)
+from .post_process import post_process_config, resolve_defaults
+from .primitive_mapping import is_supported_config_python_builtin
+from .snap import (
+    ConfigEnumValueSnap,
+    ConfigFieldSnap,
+    ConfigSchemaSnapshot,
+    ConfigTypeSnap,
+    get_recursive_type_keys,
+    snap_from_config_type,
+    snap_from_field,
+)
+from .stack import (
+    EvaluationStackListItemEntry,
+    EvaluationStackMapKeyEntry,
+    EvaluationStackMapValueEntry,
+    EvaluationStackPathEntry,
+)
+from .type_printer import print_config_type_to_string
+from .validate import process_config, validate_config, validate_config_from_snap
+
+from .evaluate_value_result import EvaluateValueResult
 from .errors import (
     DagsterEvaluationErrorReason,
     EvaluationError,
@@ -28,28 +63,5 @@ from .errors import (
     RuntimeMismatchErrorData,
     SelectorTypeErrorData,
 )
-from .evaluate_value_result import EvaluateValueResult
-from .field import Field, resolve_to_config_type
-from .field_utils import (
-    FIELD_NO_DEFAULT_PROVIDED,
-    Map,
-    Permissive,
-    Selector,
-    Shape,
-    convert_potential_field,
-)
 from .iterate_types import config_schema_snapshot_from_config_type, iterate_config_types
-from .post_process import post_process_config
-from .snap import (
-    ConfigEnumValueSnap,
-    ConfigFieldSnap,
-    ConfigSchemaSnapshot,
-    ConfigType,
-    ConfigTypeSnap,
-    get_recursive_type_keys,
-    snap_from_config_type,
-    snap_from_field,
-)
 from .source import BoolSource, IntSource, StringSource
-from .type_printer import print_config_type_to_string
-from .validate import process_config, validate_config, validate_config_from_snap

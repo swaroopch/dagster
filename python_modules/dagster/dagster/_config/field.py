@@ -99,6 +99,21 @@ def resolve_to_config_type(dagster_type: object) -> Union[ConfigType, bool]:
             )
         return Array(inner_type)
 
+    if BuiltinEnum.contains(dagster_type):
+        return ConfigType.from_builtin_enum(dagster_type)
+
+    from .primitive_mapping import (
+        is_supported_config_python_builtin,
+        remap_python_builtin_for_config,
+    )
+
+    if is_supported_config_python_builtin(dagster_type):
+        return remap_python_builtin_for_config(dagster_type)
+
+    if dagster_type is None:
+        return ConfigAnyInstance
+
+    # Special error messages for passing a DagsterType
     from dagster.core.types.dagster_type import DagsterType, List, ListType
     from dagster.core.types.python_set import Set, _TypedPythonSet
     from dagster.core.types.python_tuple import Tuple, _TypedPythonTuple
@@ -167,27 +182,6 @@ def resolve_to_config_type(dagster_type: object) -> Union[ConfigType, bool]:
                 desc=VALID_CONFIG_DESC,
             ),
         )
-
-    # If we are passed here either:
-    #  1) We have been passed a python builtin
-    #  2) We have been a dagster wrapping type that needs to be convert its config variant
-    #     e.g. dagster.List
-    #  2) We have been passed an invalid thing. We return False to signify this. It is
-    #     up to callers to report a reasonable error.
-
-    from dagster.primitive_mapping import (
-        is_supported_config_python_builtin,
-        remap_python_builtin_for_config,
-    )
-
-    if BuiltinEnum.contains(dagster_type):
-        return ConfigType.from_builtin_enum(dagster_type)
-
-    if is_supported_config_python_builtin(dagster_type):
-        return remap_python_builtin_for_config(dagster_type)
-
-    if dagster_type is None:
-        return ConfigAnyInstance
 
     # This means that this is an error and we are return False to a callsite
     # We do the error reporting there because those callsites have more context
